@@ -44,3 +44,16 @@ def save(request: Request):
     dpn.save_model()
     db["save"] = True
     return RedirectResponse(url="/")
+
+@app.get("/reset", response_class=HTMLResponse)
+def reset_dpn():
+    # Reinitialize the dpn object to reset it
+    global dpn
+    dpn = DerpenData()
+
+    # Reset the state in the db dictionary
+    db["train"] = False
+    db["input"] = ""
+    db["save"] = False
+
+    return RedirectResponse(url="/")

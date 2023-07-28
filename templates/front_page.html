@@ -1,0 +1,33 @@
+<html>
+<head>
+    <title>Le Simple App</title>
+    <link href="{{ url_for('static', path='/styles.css') }}" rel="stylesheet">
+</head>
+<body>
+
+    <h1>Welcome to simple ML site!</h1>
+
+    <button onclick="window.location.href='/train'">Perform Train</button>
+
+    {% if train %}
+    <h1>Train Completed!</h1>
+
+    <form action="/predict" method="post">
+        <label for="input_text">Enter Data Point to Predict: (Accepts Integer)</label>
+        <input type="text" id="data" name="data" required>
+        <button type="submit">Submit</button>
+    </form>
+    {% endif %}
+
+    {% if input %}
+    <h2>{{ input }}</h2>
+
+    <button onclick="window.location.href='/save'">Save model</button>
+    {% endif %}
+
+    {% if save %}
+    <h2>Save complete!</h2>
+    {% endif %}
+
+</body>
+</html>
